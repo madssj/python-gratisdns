@@ -34,7 +34,7 @@ __copyright__ = 'Mads Sülau Jørgensen <mads@sulau.dk>'
 
 class GratisDNS(object): # {{{
     BACKEND_URL = 'https://ssl.gratisdns.dk/editdomains4.phtml'
-    SUPPORTED_RECORDS = ('A', 'AAAA', 'CNAME', 'MX', 'TXT')
+    SUPPORTED_RECORDS = ('A', 'AAAA', 'CNAME', 'MX', 'TXT', 'SRV')
     
     def __init__(self, username, password):
         self.username = username
@@ -75,7 +75,7 @@ class GratisDNS(object): # {{{
         
         return records
     # }}}
-    def create_record(self, domain, host, type, data, preference=None): # {{{
+    def create_record(self, domain, host, type, data, preference=None, weight=None, port=None): # {{{
         if type in self.SUPPORTED_RECORDS:
             if host.find(domain) == -1:
                 if host == '':
@@ -101,6 +101,12 @@ class GratisDNS(object): # {{{
             elif type == 'TXT':
                 args['leftRR'] = host
                 args['rightRR'] = data
+            elif type == 'SRV':
+                args['host'] = host
+                args['exchanger'] = data
+                args['preference'] = preference or 10
+                args['weight'] = weight or 0
+                args['port'] = port or 0
             
             soup = self._request(**args)
             for record in self._get_records(soup):
