@@ -41,11 +41,11 @@ class GratisDNS(object): # {{{
         self.password = password
     # }}}
     def _get_domains(self, soup): # {{{
-        domains = []
-        for sibling in soup.findAll('tr', {'class': re.compile('BODY[1-2]BG')}):
-            domains.append(sibling.next.contents[0])
+        domains = set()
+        for domain in soup.findAll('input', {'name': 'user_domain', 'type': 'hidden'}):
+            domains.add(domain['value'])
         
-        return domains
+        return list(domains)
     # }}}
     def _get_records(self, soup): # {{{
         records = []
