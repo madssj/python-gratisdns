@@ -3,33 +3,33 @@ python-gratisdns
 
 A project which aims to combine the ease of python, with the power of GratisDNS.
 
-Depends uppon `BeautifulSoup`<http://www.crummy.com/software/BeautifulSoup/> for html parsing.
+Depends uppon [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/) for html parsing.
 
 Installation
 ============
-Just copy `gratisdns.py` somewhere - that could be into `site-packages`.
+Just copy ```gratisdns.py``` somewhere - that could be into ```site-packages```.
 
 Note
 ----
-Someone should create a `setup.py` file.
+Someone should create a ```setup.py``` file.
 
 Examples
 ========
 Relocate all secondary domains to a new ip:
 
-::
-
+```python
 	my_new_ip = '231.231.231.231'
 	from gratisdns import GratisDNS
 	g = GratisDNS('username', 'password')
 	for domain in g.get_secondary_domains():
 		g.delete_secondary_domain(domain)
 		g.create_secondary_domain(domain, my_new_ip)
+```
 
-All functions:
+All functions
+-------------
 
-::
-
+```python
 	>>> from gratisdns import GratisDNS
 	>>> g = GratisDNS('username', 'password')
 	>>> g.get_primary_domains()
@@ -54,3 +54,4 @@ All functions:
 	True
 	>>> g.delete_primary_domain('mytest.dk')
 	True
+```
