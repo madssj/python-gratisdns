@@ -9,9 +9,7 @@ Installation
 ============
 Just copy ```gratisdns.py``` somewhere - that could be into ```site-packages```.
 
-Note
-----
-Someone should create a ```setup.py``` file.
+_Someone should create a ```setup.py``` file._
 
 Examples
 ========
