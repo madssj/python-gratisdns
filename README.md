@@ -5,6 +5,8 @@ A project which aims to combine the ease of python, with the power of GratisDNS.
 
 Depends uppon [BeautifulSoup](http://www.crummy.com/software/BeautifulSoup/) for html parsing.
 
+Some other guys created the same in [php](https://github.com/kasperhartwich/php-gratisdns), and a ruby version is in the works.
+
 Installation
 ============
 Just copy ```gratisdns.py``` somewhere - that could be into ```site-packages```.
