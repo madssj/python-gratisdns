@@ -33,7 +33,7 @@ __license__ = 'MIT'
 __copyright__ = 'Mads Sülau Jørgensen <mads@sulau.dk>'
 
 class GratisDNS(object): # {{{
-    BACKEND_URL = 'https://ssl.gratisdns.dk/editdomains4.phtml'
+    BACKEND_URL = 'https://oldsystem.gratisdns.dk/editdomains4.phtml'
     SUPPORTED_RECORDS = ('A', 'AAAA', 'CNAME', 'MX', 'TXT', 'SRV')
     
     def __init__(self, username, password):
@@ -229,6 +229,7 @@ class GratisDNS(object): # {{{
                 return False
         else:
             return False
+    # }}}
     def test_axfr(self, domain, master, slave=None): # {{{
         raise NotImplementedError()
     # }}}
