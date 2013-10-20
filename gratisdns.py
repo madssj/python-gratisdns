@@ -205,6 +205,30 @@ class GratisDNS(object): # {{{
         soup = self._request(action="deletesecondarydns", user_domain=domain)
         return domain not in self._get_domains(soup)
     # }}}
+    def import_from_axfr(self, domain, slave="127.0.0.1"): # {{{
+        records = self.get_primary_domain_details(domain)
+
+        if len(records) > 0:
+            domainid = records[0]['domainid']
+        else:
+            return False
+
+        soup = self._request(
+            action='importdomainfromaxfrnow',
+            domainid=domainid,
+            ip=slave
+        )
+
+        system_messages = soup.findAll('td', {'class': 'systembesked'})
+        if len(system_messages) == 1:
+            message = system_messages[0].text
+            domains = system_messages[0].findAll('input', {'name': 'domain'})
+            if len(domains) == 1:
+                return domains[0]['value'] + ': ' + message
+            else:
+                return False
+        else:
+            return False
     def test_axfr(self, domain, master, slave=None): # {{{
         raise NotImplementedError()
     # }}}
